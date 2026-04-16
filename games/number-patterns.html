@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué Número Saldrá? - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .roulette-circle {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #444;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            background: #111;
+            margin: 1rem 0;
+            color: var(--gold);
+        }
+        .prediction-input {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            width: 60px;
+            text-align: center;
+            background: #222;
+            color: #fff;
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            margin-top: 2rem;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>🔢 ¿Qué Número Saldrá?</h2>
+        <p><strong>Mito:</strong> "Los números tienen patrones."</p>
+
+        <div class="visual-area">
+            <div id="number-display" class="roulette-circle">?</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">1000</span>
+                <span>Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-hits">0</span>
+                <span>Aciertos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-total">0</span>
+                <span>Tiros</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <p>Predice el próximo número (1-10):</p>
+            <input type="number" id="prediction" class="prediction-input" min="1" max="10" value="1">
+            <button id="btn-spin" class="btn">Lanzar (10 Fichas)</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="freqChart"></canvas>
+        </div>
+
+        <div class="explanation">
+            <h3>Ilusión de Patrones</h3>
+            <p>A menudo el cerebro humano intenta encontrar "rachas" o "patrones" donde no los hay. Aunque el número 7 haya salido 3 veces seguidas, la probabilidad de que salga el 7 de nuevo sigue siendo exactamente <strong>1/10 (10%)</strong>.</p>
+        </div>
+    </div>
+
+    <script src="js/number-patterns.js"></script>
+</body>
+</html>

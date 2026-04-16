@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ilusión de la Precisión - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .slot-machine {
+            display: flex;
+            gap: 15px;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 15px;
+            border: 8px solid #f1c40f;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .reel {
+            width: 80px;
+            height: 120px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: #000;
+            overflow: hidden;
+            position: relative;
+        }
+        .reel-content {
+            position: absolute;
+            transition: top 2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            top: 0;
+        }
+        .symbol {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>🍒 La Ilusión de la Precisión</h2>
+        <p><strong>Mito:</strong> "Si algo casi ocurre, significa que estamos cerca de lograrlo."</p>
+
+        <div class="visual-area">
+            <div class="slot-machine">
+                <div class="reel"><div id="reel1" class="reel-content"></div></div>
+                <div class="reel"><div id="reel2" class="reel-content"></div></div>
+                <div class="reel"><div id="reel3" class="reel-content"></div></div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">1000</span>
+                <span>Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-near">0</span>
+                <span>Casi Aciertos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-wins">0</span>
+                <span>Premios</span>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button id="btn-spin" class="btn">LANZAR (10 FICHAS)</button>
+        </div>
+
+        <div class="explanation">
+            <h3>¿Qué es un "Near Miss"?</h3>
+            <p>A menudo verás combinaciones como <strong>7 7 ⭐</strong>. El cerebro lo interpreta como "estuve muy cerca", lo cual incita a seguir jugando. Sin embargo, matemáticamente, ese resultado es tan independiente como cualquier otro. No significa que el premio "esté por caer".</p>
+        </div>
+        
+        <div id="result-msg" style="text-align: center; font-weight: bold; margin-top: 1rem; height: 1.5rem;"></div>
+    </div>
+
+    <script src="js/near-miss.js"></script>
+</body>
+</html>

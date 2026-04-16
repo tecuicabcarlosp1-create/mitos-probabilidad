@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot Box Simulator - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .box-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+            min-height: 150px;
+        }
+        .card {
+            width: 80px;
+            height: 120px;
+            background: #333;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.6rem;
+            text-align: center;
+            padding: 5px;
+            border: 2px solid transparent;
+            animation: popIn 0.3s ease-out;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .card.common { border-color: #888; color: #eee; }
+        .card.rare { border-color: #2196f3; color: #2196f3; box-shadow: 0 0 5px #2196f3; }
+        .card.epic { border-color: #9c27b0; color: #9c27b0; box-shadow: 0 0 10px #9c27b0; }
+        .card.legendary { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 15px var(--gold); animation: glow 1s infinite alternate; }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--gold); }
+            to { box-shadow: 0 0 20px var(--gold); }
+        }
+
+        .pack-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>📦 Loot Box Simulator</h2>
+        <p><strong>Mito:</strong> "Si compras muchas cajas, seguro obtendrás el objeto legendario."</p>
+
+        <div class="visual-area">
+            <div id="box-display" class="box-container">
+                <p style="color: #555;">Compra un mazo para ver tus cartas</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">1000</span>
+                <span>Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-mazos">0</span>
+                <span>Mazos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-legendary">0</span>
+                <span>Legendarias</span>
+            </div>
+        </div>
+
+        <div class="pack-controls">
+            <button id="btn-pack-1" class="btn">1 MAZO (10 FICHAS)</button>
+            <button id="btn-pack-10" class="btn">10 MAZOS (90 FICHAS)</button>
+        </div>
+
+        <div class="explanation">
+            <h3>Probabilidades por Carta</h3>
+            <ul>
+                <li>⚪ Común: 80%</li>
+                <li>🔵 Raro: 50% (en mazo de 10)</li>
+                <li>🟣 Épico: 20%</li>
+                <li>🟡 Legendario: 5%</li>
+            </ul>
+            <p><strong>Dato:</strong> Aunque compres 100 mazos, el azar de cada carta es independiente. No hay "pity timer" real en la probabilidad matemática pura.</p>
+        </div>
+
+        <div id="legendary-alert" style="display:none; text-align: center; background: rgba(255, 215, 0, 0.2); padding: 1rem; border: 1px solid var(--gold); margin-top: 1rem;">
+            🔥 ¡INCREÍBLE! Has obtenido una carta LEGENDARIA 🔥
+        </div>
+    </div>
+
+    <script src="js/loot-box.js"></script>
+</body>
+</html>

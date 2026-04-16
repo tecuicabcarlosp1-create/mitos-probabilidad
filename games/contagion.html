@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagio en el Salón - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 10px;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        .person {
+            width: 50px;
+            height: 50px;
+            background: #444;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .person.healthy { background: #4caf50; }
+        .person.infected { background: #f44336; box-shadow: 0 0 10px #f44336; }
+        .person.selected { border-color: #fff; transform: scale(1.1); }
+        
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .slider-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>🦠 Contagio en el Salón</h2>
+        <p><strong>Mito:</strong> "Un contagio ocurre al azar y no depende del contacto."</p>
+
+        <div class="visual-area">
+            <div id="grid" class="grid-container"></div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">100</span>
+                <span>Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-infected">1</span>
+                <span>Infectados</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-round">0</span>
+                <span>Ronda</span>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <div class="slider-group">
+                <label>Probabilidad de contagio:</label>
+                <input type="range" id="prob-slider" min="10" max="100" value="50">
+                <span id="prob-val">50%</span>
+            </div>
+            <div class="slider-group">
+                <label>Máximo de contactos p/ronda:</label>
+                <input type="range" id="contact-slider" min="1" max="5" value="2">
+                <span id="contact-val">2</span>
+            </div>
+            <p style="text-align: center; font-size: 0.9rem; color: #8b949e;">Haz clic en una persona sana para predecir quién se contagiará.</p>
+            <button id="btn-next" class="btn">SIGUIENTE RONDA</button>
+            <button id="btn-reset" class="btn" style="background: #444; color: #fff;">REINICIAR</button>
+        </div>
+
+        <div class="explanation">
+            <h3>¿Cómo funciona?</h3>
+            <p>En cada ronda, las personas infectadas pueden contagiar a sus <strong>vecinos directos</strong> (arriba, abajo, izquierda, derecha). Si predices correctamente quién se contagiará, ganas 10 fichas. Si fallas, pierdes 10.</p>
+            <p><strong>Conclusión:</strong> Verás que aunque hay azar, la estructura del contacto físico es lo que determina la propagación. No es un evento independiente.</p>
+        </div>
+    </div>
+
+    <script src="js/contagion.js"></script>
+</body>
+</html>

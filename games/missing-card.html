@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Carta que Nunca Sale - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .deck-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 10px;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+        .card-mini {
+            aspect-ratio: 2/3;
+            background: var(--gold);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+        .card-mini.selected {
+            border-color: #fff;
+            box-shadow: 0 0 10px #fff;
+            transform: scale(1.1);
+        }
+        .card-mini.missing {
+            background: #444;
+            color: #888;
+        }
+        .frequency-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .freq-item {
+            background: #222;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .bait-badge {
+            background: var(--red);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            display: none;
+        }
+        .card-display {
+            width: 120px;
+            height: 180px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            color: #000;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .card-suit { font-size: 1.5rem; }
+        .card-bottom { transform: rotate(180deg); }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>🃏 La Carta que Nunca Sale</h2>
+        <p><strong>Mito:</strong> "Si una carta no ha salido en mucho tiempo, ahora es más probable."</p>
+
+        <div class="visual-area">
+            <div id="result-card" class="card-display">
+                <div class="card-suit">♠</div>
+                <div style="text-align: center;" id="card-val">?</div>
+                <div class="card-suit card-bottom">♠</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">1000</span>
+                <span>Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-hits">0</span>
+                <span>Aciertos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-total">0</span>
+                <span>Robos</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <p>Selecciona tu carta (1-20):</p>
+            <div id="deck" class="deck-area"></div>
+        </div>
+
+        <div class="controls" style="display: flex; gap: 1rem; justify-content: center;">
+            <button id="btn-draw" class="btn">Robar 1</button>
+            <button id="btn-draw-20" class="btn">Robar 20</button>
+        </div>
+
+        <div class="explanation">
+            <h3>Frecuencia de Cartas</h3>
+            <div id="frequency" class="frequency-list"></div>
+            <p><strong>Dato:</strong> La baraja se baraja completamente en cada robo. Cada carta siempre tiene 1/20 (5%) de probabilidad de salir, sin importar cuánto tiempo lleve sin aparecer.</p>
+        </div>
+
+        <div id="conclusion" class="explanation" style="display:none; border-color: var(--green);">
+            ✅ ¡Mito Roto! Los eventos son independientes. Aunque una carta no haya salido en 50 intentos, su probabilidad sigue siendo la misma. No existe la "memoria" en el azar.
+        </div>
+    </div>
+
+    <script src="js/missing-card.js"></script>
+</body>
+</html>

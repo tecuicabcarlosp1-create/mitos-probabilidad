@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Puedes ganarle al casino? - Casino Matemático</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .roulette-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid #5d4037;
+            position: relative;
+            background: #1b5e20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 3s cubic-bezier(0.1, 0, 0, 1);
+        }
+        .roulette-ball {
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            z-index: 10;
+        }
+        .betting-board {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        .bet-option {
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+        .bet-red { background: var(--red); color: #fff; }
+        .bet-black { background: #000; color: #fff; }
+        .bet-green { background: var(--green); color: #000; }
+        .selected-bet { border-color: var(--gold); }
+        .chip-selector {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Volver al menú</a>
+        <h2>🎡 ¿Puedes ganarle al casino?</h2>
+        <p><strong>Mito:</strong> "Si juegas suficiente tiempo, terminarás ganando."</p>
+
+        <div class="visual-area">
+            <div id="roulette" class="roulette-container">
+                <div id="roulette-text" style="font-size: 2rem; color: var(--gold); transform: rotate(0deg);">?</div>
+                <div class="roulette-ball" id="ball"></div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-fichas">100</span>
+                <span>Tus Fichas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-house">0</span>
+                <span>Ganancia Casino</span>
+            </div>
+        </div>
+
+        <div class="chip-selector">
+            <span>Apostar: </span>
+            <select id="bet-amount" class="btn" style="background: #fff; color: #000;">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+
+        <div class="betting-board">
+            <div id="bet-red" class="bet-option bet-red">ROJO</div>
+            <div id="bet-black" class="bet-option bet-black">NEGRO</div>
+            <div id="bet-green" class="bet-option bet-green">VERDE</div>
+        </div>
+
+        <div style="text-align: center;">
+            <button id="btn-spin" class="btn">GIRAR RULETA</button>
+            <button id="btn-quit" class="btn" style="background-color: var(--red); color: white; margin-left: 10px;">RETIRARSE</button>
+        </div>
+
+        <div class="explanation">
+            <h3>La Ventaja de la Casa</h3>
+            <p>La ruleta tiene un número verde (el 0). Aunque apuestes a rojo o negro, si cae verde, el casino gana. A largo plazo, esta pequeña diferencia garantiza que el casino siempre se quede con tu dinero.</p>
+        </div>
+        
+        <div id="final-stats" style="display:none; margin-top: 1rem; border: 1px solid var(--gold); padding: 1rem;">
+            <h4>Resultados Finales:</h4>
+            <p>Dinero inicial: 100</p>
+            <p>Dinero final: <span id="final-money">0</span></p>
+            <p id="final-msg" style="color: var(--red);"></p>
+        </div>
+    </div>
+
+    <script src="js/casino-roulette.js"></script>
+</body>
+</html>
